@@ -5,11 +5,14 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 # install RecBole
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get upgrade -y && \
-    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y git && \
-    pip install --no-cache-dir --upgrade numpy pandas && \
-    git clone https://github.com/RUCAIBox/RecBole.git && \
-    mv RecBole /usr/local/bin/RecBole && \
-    echo "alias run_hyper='python /usr/local/bin/RecBole/run_hyper.py'" >> ~/.bashrc && \
-    echo "alias run_recbole='python /usr/local/bin/RecBole/run_recbole.py'" >> ~/.bashrc && \
-    echo "alias run_recbole_group='python /usr/local/bin/RecBole/run_recbole_group.py'" >> ~/.bashrc && \
+    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y git wget && \
+    pip install --no-cache-dir recbole && \
+    pip install --no-cache-dir --force-reinstall numpy==1.26 && \
+    wget -O /usr/local/bin/run_hyper.py https://github.com/RUCAIBox/RecBole/raw/refs/heads/master/run_hyper.py && \
+    sed -i '1i#! /usr/bin/env python3' /usr/local/bin/run_hyper.py && \
+    wget -O /usr/local/bin/run_recbole.py https://github.com/RUCAIBox/RecBole/raw/refs/heads/master/run_recbole.py && \
+    sed -i '1i#! /usr/bin/env python3' /usr/local/bin/run_recbole.py && \
+    wget -O /usr/local/bin/run_recbole_group.py https://github.com/RUCAIBox/RecBole/raw/refs/heads/master/run_recbole_group.py && \
+    sed -i '1i#! /usr/bin/env python3' /usr/local/bin/run_recbole_group.py && \
+    chmod a+x /usr/local/bin/run_*.py && \
     rm -rf /root/.cache /tmp/*
