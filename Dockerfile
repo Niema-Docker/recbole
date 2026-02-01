@@ -5,7 +5,7 @@ MAINTAINER Niema Moshiri <niemamoshiri@gmail.com>
 # install RecBole
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get upgrade -y && \
-    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y unzip wget && \
+    DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y time unzip wget && \
     pip install --no-cache-dir recbole && \
     pip install --no-cache-dir --force-reinstall numpy==1.26 && \
     wget -O /usr/local/bin/run_hyper.py https://github.com/RUCAIBox/RecBole/raw/refs/heads/master/run_hyper.py && \
