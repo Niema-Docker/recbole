@@ -7,7 +7,7 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get upgrade -y && \
     DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC apt-get install -y time unzip wget && \
     pip install --no-cache-dir recbole && \
-    pip install --no-cache-dir --force-reinstall numpy==1.26 && \
+    pip install --no-cache-dir --force-reinstall numpy==1.26.2 && \
     wget -O /usr/local/bin/run_hyper.py https://github.com/RUCAIBox/RecBole/raw/refs/heads/master/run_hyper.py && \
     sed -i '1i#! /usr/bin/env python3' /usr/local/bin/run_hyper.py && \
     wget -O /usr/local/bin/run_recbole.py https://github.com/RUCAIBox/RecBole/raw/refs/heads/master/run_recbole.py && \
